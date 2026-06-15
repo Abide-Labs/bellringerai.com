@@ -231,6 +231,109 @@
       margin-top: 30px;
     }
 
+    .desktop-headline,
+    .desktop-lede { display: inline; }
+    .mobile-headline,
+    .mobile-lede { display: none; }
+
+    .mobile-response-card {
+      display: none;
+      position: relative;
+      margin-top: 22px;
+      padding: 14px;
+      border: 1px solid rgba(224,112,60,0.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(224,112,60,0.20), transparent 42%),
+        rgba(255,255,255,0.075);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+
+    .mobile-response-card::before {
+      content: "";
+      position: absolute;
+      top: -34px;
+      right: -30px;
+      width: 96px;
+      height: 96px;
+      border: 1px solid rgba(224,112,60,0.26);
+      border-radius: 50%;
+    }
+
+    .mobile-response-top {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .mobile-response-title {
+      color: white;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .response-speed {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 26px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: rgba(224,112,60,0.16);
+      color: #FFD5C3;
+      font-size: 11px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .response-steps {
+      position: relative;
+      display: grid;
+      gap: 7px;
+    }
+
+    .response-step {
+      min-height: 36px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 9px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 13px;
+      background: rgba(11,18,32,0.34);
+      color: #D8E0EC;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .response-step strong { color: white; font-weight: 760; }
+
+    .response-step .mini-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.34);
+    }
+
+    .response-step.active .mini-dot {
+      background: var(--signal);
+      box-shadow: 0 0 0 5px rgba(224,112,60,0.14);
+    }
+
+    .response-step small {
+      color: #F2A17A;
+      font-size: 11px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
     .hero-note {
       margin-top: 20px;
       color: #99A7BA;
@@ -618,17 +721,27 @@
       .nav { min-height: 68px; }
       .brand-name { font-size: 20px; }
       .logo-mark { width: 38px; height: 38px; flex-basis: 38px; }
-      .hero-inner { padding: 54px 0 64px; min-width: 0; }
+      .hero-inner { gap: 0; padding: 34px 0 42px; min-width: 0; }
       .hero-inner > * { min-width: 0; max-width: 100%; }
+      .eyebrow { min-height: 30px; padding: 6px 10px; font-size: 12px; }
+      .desktop-headline,
+      .desktop-lede { display: none; }
+      .mobile-headline,
+      .mobile-lede { display: inline; }
       h1 {
         max-width: calc(100vw - 28px);
-        font-size: clamp(37px, 12vw, 46px);
-        line-height: 1.02;
-        letter-spacing: -0.058em;
+        margin: 14px 0 12px;
+        font-size: clamp(34px, 10.4vw, 40px);
+        line-height: 1.03;
+        letter-spacing: -0.052em;
         overflow-wrap: normal;
         text-wrap: balance;
       }
-      .lede { max-width: calc(100vw - 28px); font-size: 18px; overflow-wrap: break-word; }
+      .lede { max-width: calc(100vw - 28px); font-size: 16.5px; line-height: 1.42; overflow-wrap: break-word; }
+      .mobile-response-card { display: block; }
+      .hero-actions { margin-top: 16px; gap: 10px; }
+      .hero-note { display: none; }
+      .dashboard-wrap { display: none; }
       .dashboard-wrap, .dashboard { width: 100%; max-width: calc(100vw - 28px); }
       .dashboard { border-radius: 22px; }
       .dash-body, .dash-top { padding-left: 14px; padding-right: 14px; }
@@ -677,11 +790,25 @@
       <div class="container hero-inner">
         <div>
           <div class="eyebrow"><span class="signal-dot"></span> Dealership response infrastructure</div>
-          <h1 id="hero-title">Answer every call and lead the second it comes in.</h1>
-          <p class="lede">BellRinger gives dealerships instant response coverage for inbound calls, missed calls, form leads, and BDC follow-up — qualifying shoppers, setting appointments, logging notes, and routing to humans when needed.</p>
+          <h1 id="hero-title"><span class="desktop-headline">Answer every call and lead the second it comes in.</span><span class="mobile-headline">Answer every lead before the next store does.</span></h1>
+          <p class="lede"><span class="desktop-lede">BellRinger gives dealerships instant response coverage for inbound calls, missed calls, form leads, and BDC follow-up — qualifying shoppers, setting appointments, logging notes, and routing to humans when needed.</span><span class="mobile-lede">BellRinger answers inbound calls, missed calls, and form leads instantly — then books, logs, or routes the handoff.</span></p>
+
+          <div class="mobile-response-card" aria-label="BellRinger live response activity">
+            <div class="mobile-response-top">
+              <div class="mobile-response-title">Live response</div>
+              <div class="response-speed"><span class="signal-dot"></span> 4 sec reply</div>
+            </div>
+            <div class="response-steps">
+              <div class="response-step active"><span class="mini-dot"></span><strong>Incoming lead</strong><small>now</small></div>
+              <div class="response-step active"><span class="mini-dot"></span><strong>BellRinger replied</strong><small>0:04</small></div>
+              <div class="response-step"><span class="mini-dot"></span><strong>Appointment requested</strong><small>0:31</small></div>
+              <div class="response-step"><span class="mini-dot"></span><strong>CRM note ready</strong><small>0:48</small></div>
+            </div>
+          </div>
+
           <div class="hero-actions">
             <a class="btn btn-primary" href="mailto:dev@abide-labs.com?subject=BellRinger%20demo%20request">Book a demo</a>
-            <a class="btn btn-secondary" href="#how-it-works">See how it works</a>
+            <a class="btn btn-secondary" href="#how-it-works">Watch it respond.</a>
           </div>
           <p class="hero-note">Built for dealership owners, GMs, sales managers, and BDC teams who cannot afford slow first response.</p>
         </div>
